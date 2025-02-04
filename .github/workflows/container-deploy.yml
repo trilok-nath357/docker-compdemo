@@ -1,5 +1,3 @@
-Container-deploy.yml
-
 name: Deploy Apache to EC2
 
 on:

@@ -20,6 +20,11 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
 
+      - name: Convert Key to PEM Format
+        run: |
+          ssh-keygen -p -m PEM -f ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa.pem
+
       - name: Deploy Apache Container
         run: |
           ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
